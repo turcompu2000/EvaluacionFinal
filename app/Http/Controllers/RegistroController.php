@@ -16,7 +16,10 @@ class RegistroController extends Controller
      */
     public function index()
     {
-       $registros=DB::table('estudiantes');
+       $registros=DB::table('estudiantes')
+       ->join('carrera', 'estudiantes.Carrera', '=', 'estudiantes.Carrera')
+       ->select('estudiantes.*',"carrera.Carrera")
+       ->get();
        return view('Registro.index',['registros'=>$registros]);
        
     }
