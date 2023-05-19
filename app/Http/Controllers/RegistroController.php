@@ -17,7 +17,7 @@ class RegistroController extends Controller
     public function index()
     {
        $registros=DB::table('estudiantes')
-       ->join('carrera', 'estudiantes.Carrera', '=', 'estudiantes.Carrera')
+       ->join('carrera', 'estudiantes.id_Carrera','=','carrera.id_Carrera')
        ->select('estudiantes.*',"carrera.Carrera")
        ->get();
        return view('Registro.index',['registros'=>$registros]);
@@ -31,7 +31,10 @@ class RegistroController extends Controller
      */
     public function create()
     {
-        //
+        $registro = DB::table('carrera')
+        ->orderBy('Carrera')
+        ->get();
+        return view('Registro.new',['registro'=>$registro]);
     }
 
     /**
@@ -42,7 +45,17 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $registro = new Estudiante();
+        $registro->Nomb_Estudiante=$request->Nombre;
+        $registro->Apellido=$request->Apellido;
+        $registro->Carrera=$request->Profesionales;
+        $registro->save();
+
+        $registros=DB::table('estudiantes')
+       ->join('carrera', 'estudiantes.id_Carrera', '=', 'carrera.id_Carrera')
+       ->select('estudiantes.*',"carrera.Carrera")
+       ->get();
+       return view('Registro.index',['registros'=>$registros]);
     }
 
     /**

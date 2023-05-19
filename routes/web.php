@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
 
 Route::get('/Registro',[RegistroController::class, 'index'])->name('Registro.index');
+Route::post('/Registro', [RegistroController::class, 'store'])->name('Registro.store');
+Route::get('/Registro/create', [RegistroController::class, 'create'])->name('Registro.create');
 
 });
 

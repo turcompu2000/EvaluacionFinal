@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('Nomb_Estudiante');
             $table->string('Apellido');
             $table->string('Carrera');
+            $table->integer('id_Carrera')->nullable();
             $table->timestamps();
         });
     }
