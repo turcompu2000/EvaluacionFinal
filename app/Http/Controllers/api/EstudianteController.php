@@ -16,9 +16,7 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-    $estudiante =DB::table('estudiantes')
-    ->join('carrera', 'estudiantes.id_Carrera','=','carrera.id_Carrera')
-    ->select('estudiantes.*',"carrera.Carrera")
+    $estudiante=DB::table('estudiantes')
     ->get();
     return json_encode(['estudiante'=>$estudiante]);
     }
