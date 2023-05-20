@@ -16,10 +16,10 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        $carrera=DB::table('carrera')
+        $carreras=DB::table('carrera')
         ->orderBy('Carrera')
         ->get();
-        return json_encode(['carrera'=>$carrera]);
+        return json_encode(['carreras'=>$carreras]);
     }
 
     /**
@@ -64,6 +64,5 @@ class CarreraController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }
