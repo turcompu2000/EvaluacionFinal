@@ -29,7 +29,13 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estudiantes = new Estudiante();
+        $estudiantes->id_Estudiante=$request->id_Estudiante;
+        $estudiantes->Nomb_Estudiante=$request->Nomb_Estudiante;
+        $estudiantes->Apellido=$request->Apellido;
+        $estudiantes->Carrera=$request->Carrera;     
+        $estudiantes->save();
+        return json_encode(['estudiantes' => $estudiantes]);
     }
 
     /**
@@ -63,6 +69,10 @@ class EstudianteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estudiante = Estudiante::find($id);
+        $estudiante->delete();
+        $estudiantes =DB::table('estudiantes')
+        ->get();
+        return json_encode(['estudiantes' => $estudiantes, 'success'=>true]);
     }
 }
